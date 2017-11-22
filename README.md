@@ -47,10 +47,13 @@ PreConfig.sh for Linux (CentOS 6.* in my case)
 Execute the following command to get functionality,
 
 ```
-python generate_data.py -h
+python GenerateWeather.py -h;
+python GenerateWeather.py -i cea.tif -ry;
+python GenerateWeather.py -i gebco_08_rev_elev_21600x10800.png -ry;
+
 ```
 
-<img width="960" alt="help" src="https://user-images.githubusercontent.com/15225328/33140367-e1ce2db0-d003-11e7-86d2-d8ff8cc530a5.png">
+<img width="946" alt="help" src="https://user-images.githubusercontent.com/15225328/33140755-0203fd16-d005-11e7-8bca-78805b8ce8b5.png">
 
 Generate toy data with the input file, with different image format that will be convert to tiff format input file
 
