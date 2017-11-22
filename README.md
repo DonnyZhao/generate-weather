@@ -39,7 +39,8 @@ PreConfig.bat for Windows
 PreConfig.sh for Linux (CentOS 6.* in my case) 
 ```
 
-<img width="960" alt="help" src="https://user-images.githubusercontent.com/15225328/33140367-e1ce2db0-d003-11e7-86d2-d8ff8cc530a5.png">
+<img width="618" alt="preconfig" src="https://user-images.githubusercontent.com/15225328/33140386-f197e740-d003-11e7-9739-541ffbf7c846.png">
+
 
 ## Python Script Execution
 
@@ -49,7 +50,7 @@ Execute the following command to get functionality,
 python generate_data.py -h
 ```
 
-<img width="618" alt="preconfig" src="https://user-images.githubusercontent.com/15225328/33140386-f197e740-d003-11e7-9739-541ffbf7c846.png">
+<img width="960" alt="help" src="https://user-images.githubusercontent.com/15225328/33140367-e1ce2db0-d003-11e7-86d2-d8ff8cc530a5.png">
 
 Generate toy data with the input file, with different image format that will be convert to tiff format input file
 
