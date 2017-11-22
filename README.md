@@ -20,7 +20,7 @@ The implementation generates toy data as expected,
 - Test data contains a reasonable number of reporting stations; 10±
 
 
-## Installation
+## Preparation and Installation
 
 Make sure you have installed below components in windows or Linux,
 
@@ -75,7 +75,8 @@ tiff is the default image format, the script will convert the rest of formats (p
 ├── GenerateWeather.py                      --> Python script that generate weather data
 ├── PreConfig.bat                           --> Install python libs and packages in Windows
 ├── PreConfig.sh                            --> Alternatively, install python libs and packages in Linux (Centos 6.*)
-└── weather_data_sample.dat                 --> Generated sample data using 'cea.tif' map file and
+├── weather_generated.dat                   --> Generated sample data using 'gebco_08_rev_elev_21600x10800.png' map file
+└── weather_generated_2.dat                 --> Generated sample data using 'cea.tif' map file
                                                 
 ```
 
