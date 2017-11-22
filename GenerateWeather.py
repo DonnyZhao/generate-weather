@@ -97,18 +97,20 @@ def main(argv):
     try:
         opts, args = getopt.getopt(argv, "hi:r:", ["ifile=", "rstatus="])
     except getopt.GetoptError:
-        print 'GenerateWeather.py -i (geo file .tif) <.tif file path> -r (random station selection) <y/n>'
+        print 'GenerateWeather.py -i <file path>/<geo file name>  -ry '
+        print 'tiff is the default image format, the script will convert the rest of formats (png/jpg/bmp/jpeg) to tiff format automatically, with different quality and definition'
         sys.exit(2)
     for opt, arg in opts:
         if opt == '-h':
-            print 'GenerateWeather.py -i (geo file .tif) <.tif file path> -r (random station selection) <y/n>'
+           # print 'GenerateWeather.py -i (geo file .tif or .png format) <file path> -ry <y/n>'
+            print 'GenerateWeather.py -i <file path>/<geo file name>  -ry '
+            print 'tiff is the default image format, the script will convert the rest of formats (png/jpg/bmp/jpeg) to tiff format automatically, with different quality and definition'
             sys.exit()
         elif opt in ("-i", "--ifile"):
             inputfile = arg
         elif opt in ("-r", "--rstatus"):
             random_station = arg
     print 'GEO file is "', inputfile
-    print 'Random station selection "', random_station
     return (inputfile, random_station)
 
 
@@ -117,14 +119,16 @@ if __name__ == '__main__':
     # extract the args
     (img_file, random_selection) = main(sys.argv[1:])
 
-    ## check the imange file format
-    ##To be case-insensitive, and to eliminate a potentially large else-if chain:
+    ## check the image file format, convert them into .tif format if it is not
+
+    ## convert the image file format-- from (.png', '.jpg', '.jpeg' ) to .tif format
+    ## To be case-insensitive, and to eliminate a potentially large else-if chain:
     #m.lower().endswith(('.png', '.jpg', '.jpeg'))
-    print  "!!!!!!!!22"
-    if img_file.lower().endswith('.png'):
-         print 'hhhhhhh'
+
+    if img_file.lower().endswith(('.png', '.jpg','.bmp', '.jpeg')):
+
          #img_file_2 = png2tif(img_file)
-         img = Image.open(img_file)
+         img = Image.open(img_file).convert('1')
 
          print img.format, img.size, img.mode
          new_img = img.thumbnail((21600/10, 10800/10))
@@ -133,24 +137,19 @@ if __name__ == '__main__':
          img_file_2 = 'converted.tif'
     else:
          img_file_2 = img_file
-         print  "!3333"
+
     print img_file_2
     # con p1 = Proj(r.crs)vert the PNG format into TIF format, reduce the size of the big file
      # Read raster
     with rasterio.open(img_file_2) as r:
-    #with rasterio.open(img_file) as r:
-        print  "!!!!!!!!!"
-        #print(r.transform)
-        T0 = r.transform # replace r.affine  # upper-left pixel corner affine transform
-        #T0 = r.affine
 
-        if img_file.lower().endswith('.png'):
-         #   p1 = Proj(init='epsg:4326', no_defs='True')
-            print "aaaaaaa"
+        T0 = r.transform # replace r.affine  # upper-left pixel corner affine transform
+
+        if img_file.lower().endswith(('.png', '.jpg','.bmp' ,'.jpeg')):
+            p1 = Proj(init='epsg:4326', no_defs='True')
         else:
             p1 = Proj(r.crs)
-            print "bbbbbb"
-        #print "22222222"
+
         A = r.read(1)  # pixel values
 
     # All rows and columns
@@ -168,7 +167,7 @@ if __name__ == '__main__':
         p2 = Proj(proj='latlong', datum='WGS84')
         longs, lats = transform(p1, p2, eastings, northings)
 
-    weatherFile = open("weather_generated_cea.dat", "w")
+    weatherFile = open("weather_generated.dat", "w")
 
 # Sample data is generate in a sequential process.
     for r in range(0, len(longs)):
@@ -192,4 +191,7 @@ if __name__ == '__main__':
 
         weatherFile.write(d)
 
+
 weatherFile.close()
+print "The script completed successfully!!!"
+print "Generated the file weather_generated.dat in curren running folder !"
