@@ -1,11 +1,3 @@
-<h1 align="center">
-<img src="https://github.com/Renien/generate-weather-data/blob/master/doc/weather-icon.jpg" alt="weather" width="20%" height="20%">
-    <br>
-        Toy Data
-    <br>
-  <h4 align="center">Generate - Weather Data</h4>
-</h1>
-
 ## Summary
 
 This Python script allows to create a toy model of the environment (taking into account things like atmosphere, topography, geography,
@@ -27,14 +19,6 @@ The implementation generates toy data as expected,
 - To Generating plausible test data random fuzz is used to check for checking boundaries
 - Test data contains a reasonable number of reporting stations; 10±
 
-Since the objective is to show the approach and technique a python script has been implemented to execute has single thread sequential job. Therefore, if we try to use bigger geo file it will take time to complete the full process and to generate the toy data. To overcome this issue we need to implement MapReduce implementation to run each process parallel in cluster.
-MapReduce jobs can be implemented using one of the technology (Which will run on Hadoop Stack):
-
-- Pig
-- Scalding
-- Apache Flume
-- Apache Spark (Can execute in standalone mode)
-- etc
 
 ## Installation
 
@@ -49,8 +33,12 @@ Make sure you have installed,
 To install the above python libs execute the following command,
 
 ```
-bash install.sh
+PreConfig.bat
 ```
+
+<p align="center">
+    <img src="https://github.com/DonnyZhao/generate-weather/tree/master/doc/PreConfig.png" alt="PreConfig display">
+</p>
 
 ## Python Script Execution
 
@@ -61,25 +49,25 @@ python generate_data.py -h
 ```
 
 <p align="center">
-    <img src="https://github.com/Renien/generate-weather-data/blob/master/doc/help.png" alt="help display">
+    <img src="https://github.com/DonnyZhao/generate-weather/tree/master/doc/help.png" alt="help display">
 </p>
 
-Generate toy data with random station selection
+Generate toy data with the input file, with different image format that will be convert to tiff format input file
 
 ```
-python generate_data.py -i /<your path dir>/generate-weather-data/cea.tif -r y
+tiff is the default image format, the script will convert the rest of formats (png/jpg/bmp/jpeg) to tiff format automatically, with different quality and definition
 ```
 
 ## Directory Layout
 
 ```
 .
-├── cea.tif                                 --> Sample small geo map
-├── gebco_08_rev_elev_D2_grey_geo.tif       --> Australia content geo map
+├── cea.tif                                 --> Sample small geo map (tif format)
+├── gebco_08_rev_elev_21600x10800.png       --> Australia content geo png map (png format)
 ├── generate_data.py                        --> Python script that generate weather data
-├── install.sh                              --> Install python packages
+├── PreConfig.bat                           --> Install python libs and packages
 └── weather_data_sample.dat                 --> Generated sample data using 'cea.tif' map file and
-                                                random station selection 'y'
+                                                
 ```
 
 ## Generated sample toy data
@@ -99,5 +87,3 @@ BEN|33.9435602395,-117.634930958|2010-06-05 01:59:31|Snow|-3.8|1080.8|61
 HOB|33.9435602412,-117.634283149|2008-09-01 02:16:26|Snow|-6.5|787.9|69
 CAN|33.9435602428,-117.633635339|2014-06-18 20:06:27|Snow|-3.6|941.9|60
 ```
-
-Thanks [**flaticon**](https://www.flaticon.com) for free icon.
