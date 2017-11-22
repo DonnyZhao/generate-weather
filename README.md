@@ -55,7 +55,12 @@ python GenerateWeather.py -i gebco_08_rev_elev_21600x10800.png -ry;
 
 <img width="946" alt="help" src="https://user-images.githubusercontent.com/15225328/33140755-0203fd16-d005-11e7-8bca-78805b8ce8b5.png">
 
-Generate toy data with the input file, with different image format that will be convert to tiff format input file
+The script accept different  formats of image input file, it will convert them to tiff format automatically and internally.
+- tif
+- png
+- jpg
+- bmp
+- jpeg
 
 ```
 tiff is the default image format, the script will convert the rest of formats (png/jpg/bmp/jpeg) to tiff format automatically, with different quality and definition
@@ -66,8 +71,8 @@ tiff is the default image format, the script will convert the rest of formats (p
 ```
 .
 ├── cea.tif                                 --> Sample small geo map (tif format)
-├── gebco_08_rev_elev_21600x10800.png       --> Australia content geo png map (png format)
-├── generate_data.py                        --> Python script that generate weather data
+├── gebco_08_rev_elev_21600x10800.png       --> Sample Big High defination Australia content geo png map (png format)
+├── GenerateWeather.py                      --> Python script that generate weather data
 ├── PreConfig.bat                           --> Install python libs and packages in Windows
 ├── PreConfig.sh                            --> Alternatively, install python libs and packages in Linux (Centos 6.*)
 └── weather_data_sample.dat                 --> Generated sample data using 'cea.tif' map file and
