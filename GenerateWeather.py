@@ -102,7 +102,6 @@ def main(argv):
         sys.exit(2)
     for opt, arg in opts:
         if opt == '-h':
-           # print 'GenerateWeather.py -i (geo file .tif or .png format) <file path> -ry <y/n>'
             print 'GenerateWeather.py -i <file path>/<geo file name>  -ry '
             print 'tiff is the default image format, the script will convert the rest of formats (png/jpg/bmp/jpeg) to tiff format automatically, with different quality and definition'
             sys.exit()
@@ -123,7 +122,6 @@ if __name__ == '__main__':
 
     ## convert the image file format-- from (.png', '.jpg', '.jpeg' ) to .tif format
     ## To be case-insensitive, and to eliminate a potentially large else-if chain:
-    #m.lower().endswith(('.png', '.jpg', '.jpeg'))
 
     if img_file.lower().endswith(('.png', '.jpg','.bmp', '.jpeg')):
 
@@ -184,7 +182,7 @@ if __name__ == '__main__':
             r = requests.get('http://iatageo.com/getCode/' + str(s_lats[i]) + '/' + str(s_long[i]))
             iat = r.json()['IATA']
 
-        datetime = randomDate("2007-11-11 00:00:00", "2017-11-19 23:00:00", random.random())
+        datetime = randomDate("2009-11-11 00:00:00", "2017-11-19 23:00:00", random.random())
         weather = genWeather()
         geo = str(s_lats[i]) + "," + str(s_long[i])
         d = str(iat) + "|" + geo + "|" + datetime + "|" + weather + "\n"
